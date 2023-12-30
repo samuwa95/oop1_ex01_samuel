@@ -25,7 +25,7 @@ public:
 private:
 	Vertex m_bottomLeft;
 	Vertex m_bottomRight;
-	Vertex m_Top;
+	Vertex m_top;
 
 	bool checkValid();
 	void setVertex();

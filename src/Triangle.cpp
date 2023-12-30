@@ -9,7 +9,7 @@ Triangle::Triangle()
 }
 
 Triangle::Triangle(const Vertex vertices[3])
-	: m_bottomLeft(vertices[0]), m_bottomRight(vertices[1]), m_Top(vertices[2])
+	: m_bottomLeft(vertices[0]), m_bottomRight(vertices[1]), m_top(vertices[2])
 {
 	checkValid();
 }
@@ -18,8 +18,8 @@ Triangle::Triangle(const Vertex vertices[3])
 Triangle::Triangle(const Vertex& v0, const Vertex& v1, double height)
 	: m_bottomLeft(v0), m_bottomRight(v1)
 {
-	m_Top.m_col = (m_bottomLeft.m_col + m_bottomRight.m_col) / 2;
-	m_Top.m_row = m_bottomRight.m_row + height;
+	m_top.m_col = (m_bottomLeft.m_col + m_bottomRight.m_col) / 2;
+	m_top.m_row = m_bottomRight.m_row + height;
 	checkValid();
 }
 
@@ -33,7 +33,7 @@ Vertex Triangle::getVertex(int index) const
 		return m_bottomRight;
 	case 2:
 	default:
-		return m_Top;
+		return m_top;
 	}
 }
 
@@ -44,14 +44,14 @@ double Triangle::getLength() const
 
 double Triangle::getHeight() const
 {
-	return abs(m_Top.m_row - m_bottomLeft.m_row);
+	return abs(m_top.m_row - m_bottomLeft.m_row);
 }
 
 void Triangle::draw(Board& board) const
 {
 	board.drawLine(m_bottomLeft, m_bottomRight);
-	board.drawLine(m_bottomRight, m_Top);
-	board.drawLine(m_Top, m_bottomLeft);
+	board.drawLine(m_bottomRight, m_top);
+	board.drawLine(m_top, m_bottomLeft);
 }
 
 double Triangle::getArea() const
@@ -62,8 +62,8 @@ double Triangle::getArea() const
 Vertex Triangle::getCenter() const
 {
 	Vertex center;
-	center.m_col = m_Top.m_col;
-	center.m_row = (m_bottomLeft.m_row + m_Top.m_row) / 2;
+	center.m_col = m_top.m_col;
+	center.m_row = (m_bottomLeft.m_row + m_top.m_row) / 2;
 	return center;
 }
 
@@ -88,13 +88,13 @@ bool Triangle::scale(double factor)
 
 	//New_m_vertex2.m_col = center.m_col + (m_vertex2.m_col - center.m_col) * factor;
 	New_m_vertex2.m_col = center.m_col;
-	New_m_vertex2.m_row = center.m_row + (m_Top.m_row - center.m_row) * factor;
+	New_m_vertex2.m_row = center.m_row + (m_top.m_row - center.m_row) * factor;
 
 	if (New_m_bottomLeft.isValid() && New_m_bottomRight.isValid() && New_m_vertex2.isValid())
 	{
 		m_bottomLeft = New_m_bottomLeft;
 		m_bottomRight = New_m_bottomRight;
-		m_Top = New_m_vertex2;
+		m_top = New_m_vertex2;
 		return true;
 	}
 	else
@@ -106,20 +106,20 @@ Rectangle Triangle::getBoundingRectangle() const
 	Vertex topRight;
 	Vertex bottomLeft;
 
-	if (m_Top.isHigherThan(m_bottomRight))
+	if (m_top.isHigherThan(m_bottomRight))
 	{
-		topRight = Vertex(m_bottomRight.m_col, m_Top.m_row);
+		topRight = Vertex(m_bottomRight.m_col, m_top.m_row);
 		return Rectangle(m_bottomLeft, topRight);
 	}
 
-	bottomLeft = Vertex(m_bottomLeft.m_col, m_Top.m_row);
+	bottomLeft = Vertex(m_bottomLeft.m_col, m_top.m_row);
 	return Rectangle(bottomLeft, m_bottomRight);
 }
 
 bool Triangle::checkValid()
 {
 	
-	if (!m_bottomLeft.isValid() || !m_bottomRight.isValid() || !m_Top.isValid())
+	if (!m_bottomLeft.isValid() || !m_bottomRight.isValid() || !m_top.isValid())
 	{
 		setVertex();
 		return false;
@@ -130,8 +130,8 @@ bool Triangle::checkValid()
 		return false;
 	}
 	
-	else if (!doubleEqual(distance(m_bottomLeft, m_bottomRight), distance(m_bottomRight, m_Top)) ||
-		!doubleEqual(distance(m_bottomRight, m_Top), distance(m_Top, m_bottomLeft)))
+	else if (!doubleEqual(distance(m_bottomLeft, m_bottomRight), distance(m_bottomRight, m_top)) ||
+		!doubleEqual(distance(m_bottomRight, m_top), distance(m_top, m_bottomLeft)))
 	{
 		setVertex();
 		return false;
@@ -143,7 +143,7 @@ void Triangle::setVertex()
 {
 	m_bottomLeft = Vertex(20, 20);
 	m_bottomRight = Vertex(30, 20);
-	m_Top = Vertex(25, 20 + sqrt(75));
+	m_top = Vertex(25, 20 + sqrt(75));
 }
 
 
