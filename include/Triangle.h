@@ -7,10 +7,12 @@
 class Triangle
 {
 public:
+	//constrctors
 	Triangle();
 	Triangle(const Vertex vertices[3]);
 	Triangle(const Vertex& v0, const Vertex& v1, double height);
 
+	//Functions
 	Vertex getVertex(int index) const;
 	double getLength() const;
 	double getHeight() const;
@@ -23,6 +25,7 @@ public:
 	Rectangle getBoundingRectangle() const;
 
 private:
+	// members
 	Vertex m_bottomLeft;
 	Vertex m_bottomRight;
 	Vertex m_top;

@@ -6,8 +6,10 @@
 
 class Window {
 public:
+
+	Window();
 	Window(const Rectangle& outer, const  Rectangle& inner);
-	Window(const Rectangle& outer, double verticalThickness, double height, double horizontalThickness);
+	Window(const Rectangle& outer, double verticalThickness, double horizontalThickness);
 
 
 	Vertex getBottomLeft()const;
@@ -25,8 +27,9 @@ public:
 
 private:
 
-	Vertex m_Right, m_Left, m_Up, m_Down;
+	Rectangle m_outer;
+	Rectangle m_inner;
 	bool checkValid();
-	void setVertcies();
+	void setVertex();;
 };
 
