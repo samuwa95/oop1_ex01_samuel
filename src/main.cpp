@@ -9,8 +9,8 @@
 
 #define RECTANGLE   0
 #define TRIANGLE    0
-#define WINDOW      1
-#define HEXAGRAM    0
+#define WINDOW      0
+#define HEXAGRAM    1
 
 #if RECTANGLE
 #include "Rectangle.h"

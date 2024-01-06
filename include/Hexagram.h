@@ -26,10 +26,10 @@ public:
 	void draw(Board& board) const;
 
 private:
+	// members
 	Triangle m_firstTriangle;
 	Triangle m_secondTriangle;
 
 	bool checkValid();
 	void setVertex();
-	void scaleTriangle(double factor, Triangle& triangle, Vertex center);
 };

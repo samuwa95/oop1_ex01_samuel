@@ -75,9 +75,12 @@ bool Window::scale(double factor)
 	if (factor < 0)
 		return false;
 
-	m_inner.scale(factor);
-	m_outer.scale(factor);
-	return true;
+	bool scaleStatue = true;
+	scaleStatue = m_outer.scale(factor);
+	if (scaleStatue == true) {
+		m_inner.scale(factor);
+	}
+	return scaleStatue;
 }
 
 Rectangle Window::getBoundingRectangle() const
@@ -98,7 +101,7 @@ bool Window::checkValid()
 		(m_inner.getCenter().m_row != m_outer.getCenter().m_row)))
 	{
 		setVertex();
-		return false; // TODO::
+		return false;
 	}
 	
 }

@@ -9,7 +9,7 @@ Triangle::Triangle()
 }
 
 Triangle::Triangle(const Vertex vertices[3])
-	: m_bottomLeft(vertices[0]), m_bottomRight(vertices[1]), m_top(vertices[2])
+	: m_bottomLeft(vertices[0]), m_bottomRight(vertices[2]), m_top(vertices[1])
 {
 	checkValid();
 }
@@ -25,15 +25,16 @@ Triangle::Triangle(const Vertex& v0, const Vertex& v1, double height)
 
 Vertex Triangle::getVertex(int index) const
 {
+	//check the index and returns its the vertex
 	switch (index)
 	{
 	case 0:
 		return  m_bottomLeft;
 	case 1:
-		return m_bottomRight;
+		return m_top;
 	case 2:
 	default:
-		return m_top;
+		return m_bottomRight;
 	}
 }
 

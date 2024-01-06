@@ -6,12 +6,12 @@
 
 class Window {
 public:
-
+	//constractors
 	Window();
 	Window(const Rectangle& outer, const  Rectangle& inner);
 	Window(const Rectangle& outer, double verticalThickness, double horizontalThickness);
 
-
+	// fanctions
 	Vertex getBottomLeft()const;
 	Vertex getTopRight()const;
 	double getVerticalThickness()const;
@@ -26,7 +26,7 @@ public:
 	Rectangle getBoundingRectangle()const;
 
 private:
-
+	// members
 	Rectangle m_outer;
 	Rectangle m_inner;
 	bool checkValid();
