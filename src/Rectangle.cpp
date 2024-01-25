@@ -1,11 +1,6 @@
 #pragma once
 #include "Rectangle.h"
 
-Rectangle::Rectangle()
-{
-	checkValid();
-}
-
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 	: m_bottomLeft(bottomLeft), m_topRight(topRight)
 {
@@ -27,6 +22,7 @@ Rectangle::Rectangle(double x0, double y0, double x1, double y1)
 Rectangle::Rectangle(const Vertex& start, double width, double height)
 	: m_bottomLeft(start), m_topRight(start.m_col + width, start.m_row + height)
 {
+	
 	checkValid();
 }
 

@@ -65,13 +65,13 @@ bool Hexagram::scale(double factor)
 Rectangle Hexagram::getBoundingRectangle() const
 {
 	Vertex topRight;
-	Vertex bottomLeft; // TODO::
+	Vertex bottomLeft; 
 
-	topRight.m_col = m_firstTriangle.getVertex(2).m_col;
-	topRight.m_row = m_firstTriangle.getVertex(1).m_row;
+	topRight.m_col = m_secondTriangle.getVertex(0).m_col; 
+	topRight.m_row = m_secondTriangle.getVertex(1).m_row;
 
-	bottomLeft.m_col = m_secondTriangle.getVertex(0).m_col;
-	bottomLeft.m_row = m_secondTriangle.getVertex(1).m_row;
+	bottomLeft.m_col = m_firstTriangle.getVertex(2).m_col;
+	bottomLeft.m_row = m_firstTriangle.getVertex(1).m_row; 
 
 	return Rectangle(topRight, bottomLeft);
 }
